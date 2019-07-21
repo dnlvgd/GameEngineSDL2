@@ -1,0 +1,38 @@
+ReadMe: G-> GameObject , C -> Component 
+Immer erst GameObject dann ALLE zugehörigen Components declarieren. Verweise auf andere GameObecte sind nur möglich, wenn diese in dieser Datei schon vorher inizialisiert wurden.
+Unten sind alle möglichen komponents mit beschreibung gelistet.
+
+--Player--
+G,player,MainPlayer,500,500,1,1,0,true
+C,moveC,0,0,0.5
+C,spriteC,None,assets/sprites/player/playerShip1_red.png,1,1,1,3
+C,constraintAreaC,0,0,20000,20000
+C,mouseC
+C,boundingBoxC
+C,soundFXC,assets/audio/sfx_laser1.ogg
+C,circleColliderC,0,0,1,25
+C,physicsC,0,0,1
+C,playerBehaviorC
+
+--HeartUI--
+G,playerHeartOneFull,PlayerHeart,450,10,1,1,0,true
+C,spriteC,None,assets/sprites/heart/heart_full.png,1,1,1,3
+
+G,playerHeartOneEmpty,PlayerHeart,450,10,1,1,0,true
+C,spriteC,None,assets/sprites/heart/heart_empty.png,1,1,1,2
+
+G,playerHeartTwoFull,PlayerHeart,490,10,1,1,0,true
+C,spriteC,None,assets/sprites/heart/heart_full.png,1,1,1,3
+
+G,playerHeartTwoEmpty,PlayerHeart,490,10,1,1,0,true
+C,spriteC,None,assets/sprites/heart/heart_empty.png,1,1,1,2
+
+G,playerHeartThreeFull,PlayerHeart,530,10,1,1,0,true
+C,spriteC,None,assets/sprites/heart/heart_full.png,1,1,1,3
+
+G,playerHeartThreeEmpty,PlayerHeart,530,10,1,1,0,true
+C,spriteC,None,assets/sprites/heart/heart_empty.png,1,1,1,2
+
+G,heartsUI,PlayerHeartIndicator,490,30,1,1,0,true
+C,soundFXC,assets/audio/sfx_lose.ogg
+C,playerHealthC,playerHeartOneFull,playerHeartOneEmpty,playerHeartTwoFull,playerHeartTwoEmpty,playerHeartThreeFull,playerHeartThreeEmpty

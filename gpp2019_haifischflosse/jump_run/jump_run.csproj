@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71C0D763-CC95-446E-BCCC-F83A575FC6C8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>jump_run</RootNamespace>
+    <AssemblyName>jump_run</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>gpp2019_haifischflosse.JumpRun</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SDL2-CS, Version=2.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SDL2-CS.NetCore.2.0.8\lib\netstandard2.0\SDL2-CS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LevelTwo.cs" />
+    <Compile Include="ObjectLoader.cs" />
+    <Compile Include="PlayerHealthBehaviorComponent.cs" />
+    <Compile Include="PlayerManager.cs" />
+    <Compile Include="PlayerStateComponent.cs" />
+    <Compile Include="JumpRun.cs" />
+    <Compile Include="LevelOne.cs" />
+    <Compile Include="FilePath.cs" />
+    <Compile Include="SpawnBehaviorComponent.cs" />
+    <Compile Include="TitleScreen.cs" />
+    <Compile Include="MainMenue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpgradeMenue.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="assets\spritesheet\main_player\adventurer-all-states-single-png\SourceZips\Adventurer-1.3.zip" />
+    <None Include="assets\spritesheet\main_player\adventurer-all-states-single-png\SourceZips\Adventurer-1.5.zip" />
+    <None Include="assets\spritesheet\main_player\adventurer-all-states-single-png\SourceZips\Adventurer-Bow.zip" />
+    <None Include="assets\spritesheet\main_player\adventurer-all-states-single-png\SourceZips\Adventurer-Hand-Combat.zip" />
+    <None Include="assets\spritesheet\main_player\adventurer-all-states-single-png\SourceZips\Adventurer.zip" />
+    <None Include="assets\spritesheet\main_player\adventurer-all-states-single-png\SourceZips\run3.zip" />
+    <None Include="assets\spritesheet\projectile\arrow-rotation\Arrow.psd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\engine\engine.csproj">
+      <Project>{d971f031-0fe7-4011-b417-d4349bed22bc}</Project>
+      <Name>engine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\audio\arrow_hit_explosion.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\audio\arrow_plop.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\audio\arrow_shoot.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\audio\button_click.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\audio\coin_pickup.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\audio\GrasslandsTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\audio\GrayTrip.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\audio\impact.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\coin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\flag_animation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\grass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\knight\KnightAttack_strip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\knight\KnightDeath_strip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\knight\KnightIdle_strip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\knight\KnightJumpAndFall_strip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\knight\KnightRoll_strip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\knight\KnightRun_strip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\knight\KnightShield_strip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\knight\Source.txt" />
+    <Content Include="assets\spritesheet\main_player\adventurer-air-attack-3-end.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-air-attack1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-air-attack2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-air-attack3-loop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-air-attack3-rdy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack1\adventurer-air-attack1-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack1\adventurer-air-attack1-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack1\adventurer-air-attack1-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack1\adventurer-air-attack1-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack1\adventurer-air-attack1-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack2\adventurer-air-attack2-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack2\adventurer-air-attack2-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack2\adventurer-air-attack2-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack2\adventurer-air-attack2-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-end\adventurer-air-attack-3-end-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-end\adventurer-air-attack-3-end-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-end\adventurer-air-attack-3-end-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-end\adventurer-air-attack-3-end-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-loop\adventurer-air-attack3-loop-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-loop\adventurer-air-attack3-loop-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-loop\adventurer-air-attack3-loop-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-rdy\adventurer-air-attack3-rdy-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-air-attack3\adventurer-air-attack3-rdy\adventurer-air-attack3-rdy-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack1\adventurer-attack1-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack1\adventurer-attack1-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack1\adventurer-attack1-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack1\adventurer-attack1-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack1\adventurer-attack1-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack1\adventurer-attack1-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack2\adventurer-attack2-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack2\adventurer-attack2-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack2\adventurer-attack2-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack2\adventurer-attack2-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack2\adventurer-attack2-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack2\adventurer-attack2-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack2\adventurer-attack2-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack3\adventurer-attack3-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack3\adventurer-attack3-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack3\adventurer-attack3-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack3\adventurer-attack3-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack3\adventurer-attack3-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack3\adventurer-attack3-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-attack3\adventurer-attack3-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow-jump\adventurer-bow-jump-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow-jump\adventurer-bow-jump-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow-jump\adventurer-bow-jump-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow-jump\adventurer-bow-jump-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow-jump\adventurer-bow-jump-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow-jump\adventurer-bow-jump-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow-jump\adventurer-bow-jump-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-06.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-07.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-08.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-bow\adventurer-bow-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast-loop\adventurer-cast-loop-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast-loop\adventurer-cast-loop-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast-loop\adventurer-cast-loop-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast-loop\adventurer-cast-loop-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast-loop\adventurer-cast-loop-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast\adventurer-cast-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast\adventurer-cast-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast\adventurer-cast-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast\adventurer-cast-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-cast\adventurer-cast-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-clmb\adventurer-crnr-clmb-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-clmb\adventurer-crnr-clmb-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-clmb\adventurer-crnr-clmb-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-clmb\adventurer-crnr-clmb-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-clmb\adventurer-crnr-clmb-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-clmb\adventurer-crnr-clmb-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-grb\adventurer-crnr-grb-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-grb\adventurer-crnr-grb-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-grb\adventurer-crnr-grb-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-grb\adventurer-crnr-grb-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-grb\adventurer-crnr-grb-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-jmp\adventurer-crnr-jmp-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-jmp\adventurer-crnr-jmp-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crnr-jmp\adventurer-crnr-jmp-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch-walk\adventurer-crouch-walk-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch-walk\adventurer-crouch-walk-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch-walk\adventurer-crouch-walk-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch-walk\adventurer-crouch-walk-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch-walk\adventurer-crouch-walk-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch-walk\adventurer-crouch-walk-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch-walk\adventurer-crouch-walk-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch\adventurer-crouch-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch\adventurer-crouch-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch\adventurer-crouch-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch\adventurer-crouch-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-crouch\adventurer-crouch-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-die\adventurer-die-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-die\adventurer-die-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-die\adventurer-die-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-die\adventurer-die-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-die\adventurer-die-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-die\adventurer-die-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-die\adventurer-die-06.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-die\adventurer-die-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-drop-kick\adventurer-drop-kick-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-drop-kick\adventurer-drop-kick-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-drop-kick\adventurer-drop-kick-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-drop-kick\adventurer-drop-kick-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-drop-kick\adventurer-drop-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-fall\adventurer-fall-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-fall\adventurer-fall-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-fall\adventurer-fall-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-get-up\adventurer-get-up-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-get-up\adventurer-get-up-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-get-up\adventurer-get-up-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-get-up\adventurer-get-up-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-get-up\adventurer-get-up-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-get-up\adventurer-get-up-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-get-up\adventurer-get-up-06.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-get-up\adventurer-get-up-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-hurt\adventurer-hurt-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-hurt\adventurer-hurt-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-hurt\adventurer-hurt-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-hurt\adventurer-hurt-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle-2\adventurer-idle-2-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle-2\adventurer-idle-2-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle-2\adventurer-idle-2-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle-2\adventurer-idle-2-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle-2\adventurer-idle-2-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle\adventurer-idle-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle\adventurer-idle-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle\adventurer-idle-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle\adventurer-idle-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-idle\adventurer-idle-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-items\adventurer-items-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-items\adventurer-items-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-items\adventurer-items-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-items\adventurer-items-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-jump\adventurer-jump-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-jump\adventurer-jump-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-jump\adventurer-jump-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-jump\adventurer-jump-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-jump\adventurer-jump-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-06.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-07.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-kick\adventurer-kick-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-knock-dwn\adventurer-knock-dwn-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-knock-dwn\adventurer-knock-dwn-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-knock-dwn\adventurer-knock-dwn-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-knock-dwn\adventurer-knock-dwn-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-knock-dwn\adventurer-knock-dwn-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-knock-dwn\adventurer-knock-dwn-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-knock-dwn\adventurer-knock-dwn-06.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-knock-dwn\adventurer-knock-dwn-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-ladder-climb\adventurer-ladder-climb-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-ladder-climb\adventurer-ladder-climb-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-ladder-climb\adventurer-ladder-climb-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-ladder-climb\adventurer-ladder-climb-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-ladder-climb\adventurer-ladder-climb-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-06.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-07.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-08.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-09.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-10.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-11.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-12.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-punch\adventurer-punch-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run-punch\adventurer-run-punch %281%29.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run-punch\adventurer-run-punch %282%29.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run-punch\adventurer-run-punch %283%29.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run-punch\adventurer-run-punch %284%29.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run-punch\adventurer-run-punch %285%29.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run-punch\adventurer-run-punch %286%29.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run-punch\adventurer-run-punch %287%29.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run-punch\adventurer-run-punch-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run2\adventurer-run2-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run2\adventurer-run2-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run2\adventurer-run2-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run2\adventurer-run2-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run2\adventurer-run2-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run2\adventurer-run2-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run2\adventurer-run2-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run3\adventurer-run3-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run3\adventurer-run3-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run3\adventurer-run3-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run3\adventurer-run3-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run3\adventurer-run3-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run3\adventurer-run3-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run3\adventurer-run3-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run\adventurer-run-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run\adventurer-run-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run\adventurer-run-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run\adventurer-run-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run\adventurer-run-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run\adventurer-run-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-run\adventurer-run-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-slide\adventurer-slide-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-slide\adventurer-slide-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-slide\adventurer-slide-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-smrslt\adventurer-smrslt-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-smrslt\adventurer-smrslt-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-smrslt\adventurer-smrslt-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-smrslt\adventurer-smrslt-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-smrslt\adventurer-smrslt-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-stand\adventurer-stand-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-stand\adventurer-stand-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-stand\adventurer-stand-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-stand\adventurer-stand-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-drw\adventurer-swrd-drw-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-drw\adventurer-swrd-drw-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-drw\adventurer-swrd-drw-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-drw\adventurer-swrd-drw-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-drw\adventurer-swrd-drw-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-shte\adventurer-swrd-shte-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-shte\adventurer-swrd-shte-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-shte\adventurer-swrd-shte-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-shte\adventurer-swrd-shte-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-swrd-shte\adventurer-swrd-shte-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-walk\adventurer-walk-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-walk\adventurer-walk-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-walk\adventurer-walk-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-walk\adventurer-walk-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-walk\adventurer-walk-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-walk\adventurer-walk-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-walk\adventurer-walk-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-run\adventurer-wall-run-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-run\adventurer-wall-run-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-run\adventurer-wall-run-02.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-run\adventurer-wall-run-03.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-run\adventurer-wall-run-04.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-run\adventurer-wall-run-05.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-run\adventurer-wall-run-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-slide\adventurer-wall-slide-00.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-slide\adventurer-wall-slide-01.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\adventurer-wall-slide\adventurer-wall-slide-sprite-sheet.png" />
+    <Content Include="assets\spritesheet\main_player\adventurer-all-states-single-png\SourceZips\Source.txt" />
+    <Content Include="assets\spritesheet\main_player\adventurer-attack1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-attack2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-attack3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-bow-jump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-bow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-crouch-walk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-crouch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-die.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-drop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-fall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-get-up.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-hurt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-idle-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-idle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-jump.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-run.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-run2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-run3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-slide.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-stand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\main_player\adventurer-walk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\explosion 1.png" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\explosion 2.png" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\explosion 3.png" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\explosion 4.png" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\ezgif-3-ef210e89d0.gif" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\Half Sized\explosion 1.png" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\Half Sized\explosion 2.png" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\Half Sized\explosion 3.png" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\Half Sized\explosion 4.png" />
+    <Content Include="assets\spritesheet\projectile\arrow-explosion\Half Sized\Source.txt" />
+    <Content Include="assets\spritesheet\projectile\arrow-hit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-puff.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-rotation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-rotation\arrow-rotation-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-rotation\arrow-rotation-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-rotation\arrow-rotation-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-rotation\arrow-rotation-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-rotation\arrow-rotation-sprite-sheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-rotation\arrow_all.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\projectile\arrow-rotation\Source.txt" />
+    <Content Include="assets\spritesheet\enemy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\flash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\spritesheet\spr_flags_strip6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\texture\backgrounds\backgroundColorGrass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\texture\backgrounds\NewBackground2048x1536.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\texture\backgrounds\Source.txt" />
+    <Content Include="savefiles\GameObjects.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savefiles\level2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savefiles\level1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savefiles\level1_go.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="savefiles\PlayerSafeFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
